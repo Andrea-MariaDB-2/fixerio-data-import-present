@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>2017 Exchange Rates</title>
+
+    <link rel="stylesheet" type="text/css" href="styles/index.css">
+
+    <script type="text/javascript" src="scripts/selector.js"></script>
+    <script type="text/javascript" src="scripts/loader.js"></script>
+    <script type="text/javascript" src="scripts/drawer.js"></script>
+
+</head>
+<body>
+    <h1 class="center">2017 Exchange Rates</h1>
+
+    <div class="form-block">
+        <form id="graph-form" class="center">
+
+            <div class="form-row">
+
+                <div class="form-separator form-separator-border">
+                    Base Currency:
+                    <select id="select-currency-base"></select>
+                </div>
+
+                <div class="form-separator form-separator-border">
+                    Target Currency:
+                    <select id="select-currency-target"></select>
+                </div>
+
+                <div class="form-separator form-separator-border">
+                    <input type="button" value="Swap" onclick="swapCurrencies();" />
+                </div>
+
+                <div class="form-separator">
+                    Base amount:
+                    <input type="text" id="input-currency-base">
+                </div>
+
+
+            </div>
+            <div class="form-row">
+
+                <div class="form-separator form-separator-border">
+                    From:
+                    <select id="select-from-month"></select>
+                    <select id="select-from-day"></select>
+                </div>
+
+                <div class="form-separator">
+                    To:
+                    <select id="select-to-month"></select>
+                    <select id="select-to-day"></select>
+                </div>
+
+            </div>
+            <div class="form-row">
+
+                <div class="form-separator">
+                    <input id="button-generate" type="button" value="Generate Graph" onclick="load();" />
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="center">
+        <div class="hidden error" id="error-connection">
+            Unfortunately connection to the server was not successful
+        </div>
+        <div class="hidden error" id="error-data">
+            Unfortunately no data was returned by the server
+        </div>
+        <div class="hidden error" id="error-currency">
+            You can't select the same currency for 'Base' and 'Target'!
+        </div>
+        <div class="hidden error" id="error-date">
+            For 'To' you must select later date  than for 'From'!
+        </div>
+    </div>
+    <div class="center">
+        <canvas class="hidden" id="graph" width="950" height="220"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        generateDateSelect("from", 1, 1);
+        generateDateSelect("to", 12, 31);
+        generateCurrencySelect("base", "EUR");
+        generateCurrencySelect("target", "CZK");
+    </script>
+
+</body>
+</html>
